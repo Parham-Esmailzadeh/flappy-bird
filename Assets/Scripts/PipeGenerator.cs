@@ -5,8 +5,8 @@ using UnityEngine;
 public class PipeGenerator : MonoBehaviour
 {
     public GameObject pipes;
-    private float min = -2f;
-    private float max = 2f;
+    private float min = -1.5f;
+    private float max = 1.5f;
     public float timer = 0;
     public float pipe_speed;
 

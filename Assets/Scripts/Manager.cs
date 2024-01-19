@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour
     public Player player;
     public Text scoreTxt;
     public GameObject RetryButton;
-    public GameObject GameOver;
+    public GameObject gameOver;
     public int score;
     
     void Awake(){
@@ -17,18 +17,36 @@ public class Manager : MonoBehaviour
     }
 
     public void Play(){
+        score = 0;
+        scoreTxt.text = score.ToString();
 
+        RetryButton.SetActive(false);
+        gameOver.SetActive(false);
+
+        Time.timeScale = 1f;
+        player.enabled = true;
+
+        Pipes[] pipes = FindObjectsOfType<Pipes>();
+
+        for(int i=0; i<pipes.Length; i++){
+            Destroy(pipes[i].gameObject);
+        }        
     }    
 
     public void Pause(){
         Time.timeScale = 0f;
         player.enabled = false;
     }
+
     public void GameOver(){
-        GameOver.SetActive(true);
+        gameOver.SetActive(true);
+        RetryButton.SetActive(true);
+
+        Pause();
     }
 
     public void IncreaseScore(){
         score++;
+        scoreTxt.text = score.ToString();
     }
 }
